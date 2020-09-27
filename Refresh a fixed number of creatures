@@ -1,0 +1,42 @@
+--summary: spawn a certain number of animal in an area. Spawn more when the number less than x to maintain a fixed number of creature
+
+--the current number of creature
+local starCurNum,darklightCurNum,frogCurNum = 0,0,0 
+--the creatures ID
+local id_monster1,id_monster2,id_monster3 = 20,21,22
+
+local function spawnPetMonster()
+    --detect the number of creature 'star', if star less than 3, then spawn 3 stars in the area 
+    if starCurNum <= 3 then
+        local number = starCurNum
+        for number=number,5 do 
+            --get a random number from -45 to -54 as the coordinate x
+            local x = math.random(-45,-54)
+            local y = math.random(-15,6)
+            local result,objids = World:spawnCreature(x,41,y,id_monster1,1)
+        end
+        starCurNum = 6;
+    end
+    
+    if darklightCurNum <= 3 then
+        local number = darklightCurNum
+        for number=number,5 do
+            local x = math.random(-45,-54)
+            local y = math.random(-15,6)
+            local result,objids = World:spawnCreature(x,41,y,id_monster2,1)
+        end
+        darklightCurNum = 6;
+    end
+    
+    if frogCurNum <= 3 then
+        local number = frogCurNum
+        for number=number,5 do
+            local x = math.random(-45,-54)
+            local y = math.random(-15,6)
+            local result,objids = World:spawnCreature(x,41,y,id_monster3,1)
+        end
+        frogCurNum = 6;
+    end
+end
+
+ScriptSupportEvent:registerEvent([=[Game.Run]=],spawnPetMonster)
